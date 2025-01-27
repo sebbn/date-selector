@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="style.css"> <!-- Link to CSS -->
 </head>
 <body>
-    <div class="date-select-button">
-        <span id="selected-range">Last 7 days</span>
-        <span>Jan 19, 2024</span><span>-</span><span>Jan 26, 2024</span>
+    <div class="date-select-button" id="open-date-select-button">
+        <span id="preview-selected-range">Last 7 days</span>
+        <span id="preview-start-date">Jan 19, 2024</span><span>-</span><span id="preview-end-date">Jan 26, 2024</span>
         <span class="caret-holder">
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
                 <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
@@ -22,66 +22,68 @@
     <hr>
     <br/>
 
-    <div class="date-select">
-        <div id="body-container">
-            <div id="preset-container">
-                <div id="item-container">
-                    <span class="preset-item" id="today">Idag</span>
-                    <span class="preset-item" id="yesterday">Igår</span>
-                    <span class="preset-item" id="this_week">Denna vecka (Mån - Idag)</span>
-                    <span class="preset-item" id="last_week">Föregående vecka (Mån - Sön)</span>
-                    <span class="preset-item" id="this_month">Denna månad</span>
-                    <span class="preset-item" id="last_month">Föregående månad</span>
-                    <span class="preset-item" id="last_7">Senaste 7 dagarna</span>
-                    <span class="preset-item" id="last_30">Senaste 30 dagarna</span>
-                    <span class="preset-item" id="last_90">Senaste 90 dagarna</span>
-                    <span class="preset-item" id="last_12">Senaste 12 Månader</span>
-                    <span class="preset-item" id="last_year">Föregående år</span>
-                    <span class="preset-item" id="this_year">Detta år (Jan - Idag)</span>
-                    <span class="preset-item" id="from_start">Från start</span>
-                </div>
-            </div>
-            <div id="calender-container">
-                <div id="date-range-select-container">
-                    <div class="container">
-                        <span class="full-width-span" id="start-date-input-field" contenteditable="true">Jan 19, 2024</span>
-                        <span class="top-span">Start date</span>
-                    </div>
-                    <span style="font-size: x-large; color: #cfcfcf;">-</span>
-                    <div class="container">
-                        <span class="full-width-span" id="end-date-input-field" contenteditable="true">Jan 19, 2024</span>
-                        <span class="top-span">End date</span>
+    <div class="date-select-modal-container">
+        <div class="date-select">
+            <div id="date-select-body-container">
+                <div id="preset-container">
+                    <div id="item-container">
+                        <span class="preset-item" id="today">Idag</span>
+                        <span class="preset-item" id="yesterday">Igår</span>
+                        <span class="preset-item" id="this_week">Denna vecka (Mån - Idag)</span>
+                        <span class="preset-item" id="last_week">Föregående vecka (Mån - Sön)</span>
+                        <span class="preset-item" id="this_month">Denna månad</span>
+                        <span class="preset-item" id="last_month">Föregående månad</span>
+                        <span class="preset-item" id="last_7">Senaste 7 dagarna</span>
+                        <span class="preset-item" id="last_30">Senaste 30 dagarna</span>
+                        <span class="preset-item" id="last_90">Senaste 90 dagarna</span>
+                        <span class="preset-item" id="last_12">Senaste 12 Månader</span>
+                        <span class="preset-item" id="last_year">Föregående år</span>
+                        <span class="preset-item" id="this_year">Detta år (Jan - Idag)</span>
+                        <span class="preset-item" id="from_start">Från start</span>
                     </div>
                 </div>
-                <div id="day-container">
-                    <span>M</span>
-                    <span>T</span>
-                    <span>O</span>
-                    <span>T</span>
-                    <span>F</span>
-                    <span>L</span>
-                    <span>S</span>
-                </div>
-                <div style="border-bottom: 1px #cfcfcf solid;"></div>
-                <div id="month-container">
-                </div>
-                <template id="template-month">
-                    <div class="month-item">
-                        <span class="month-header">month name</span>
-                        <div class="month-content">
+                <div id="calender-container">
+                    <div id="date-range-select-container">
+                        <div class="date-range-span-container">
+                            <span class="full-width-span" id="start-date-input-field" contenteditable="true">Jan 19, 2024</span>
+                            <span class="top-span">Start date</span>
+                        </div>
+                        <span style="font-size: x-large; color: #cfcfcf;">-</span>
+                        <div class="date-range-span-container">
+                            <span class="full-width-span" id="end-date-input-field" contenteditable="true">Jan 19, 2024</span>
+                            <span class="top-span">End date</span>
                         </div>
                     </div>
-                </template>
-                <template id="template-day">
-                    <div class="day-item">
-                        <span class="day-item-inner">day number</span>
+                    <div id="day-container">
+                        <span>M</span>
+                        <span>T</span>
+                        <span>O</span>
+                        <span>T</span>
+                        <span>F</span>
+                        <span>L</span>
+                        <span>S</span>
                     </div>
-                </template>
+                    <div style="border-bottom: 1px #cfcfcf solid;"></div>
+                    <div id="month-container">
+                    </div>
+                    <template id="template-month">
+                        <div class="month-item">
+                            <span class="month-header">month name</span>
+                            <div class="month-content">
+                            </div>
+                        </div>
+                    </template>
+                    <template id="template-day">
+                        <div class="day-item">
+                            <span class="day-item-inner">day number</span>
+                        </div>
+                    </template>
+                </div>
             </div>
-        </div>
-        <div id="footer">
-            <span class="click-button" id="cancel-button">Cancel</span>
-            <span class="click-button" id="apply-button">Apply</span>
+            <div id="footer">
+                <span class="click-button" id="cancel-button">Cancel</span>
+                <span class="click-button" id="apply-button">Apply</span>
+            </div>
         </div>
     </div>
 

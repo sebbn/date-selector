@@ -1,10 +1,3 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-}
-
 .date-select-button {
     cursor: pointer;
     display: inline-flex;
@@ -29,8 +22,18 @@ body {
     font-size: smaller;
 }
 
+.date-select-modal-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .date-select {
-    margin: 48px;
     width: 512px;
     height: 430px;
     background-color: white;
@@ -41,7 +44,11 @@ body {
     box-shadow: 0 0 6px 0px #d7d7d7;
 }
 
-.date-select #body-container {
+.date-select-modal-hidden {
+    display: none !important;
+}
+
+.date-select #date-select-body-container {
     display: flex;
     height: 375px;
 }
@@ -101,7 +108,7 @@ body {
     flex: 1;
 }
 
-.container {
+.date-range-span-container {
     position: relative;
     width: 105px;
     border: 1px solid #cfcfcf;
@@ -109,12 +116,13 @@ body {
 }
 
 .full-width-span {
+    font-family: monospace;
     display: block;
     width: 100%;
     text-align: center;
 }
 
-.container:focus-within {
+.date-range-span-container:focus-within {
     border: 1px solid #838383;
 }
 
@@ -123,6 +131,7 @@ body {
 }
 
 .top-span {
+    font-family: arial;
     position: absolute;
     top: -10px;
     left: 50%;
@@ -154,6 +163,7 @@ body {
 }
 
 .date-select .click-button {
+    cursor: pointer;
     font-weight: bold;
     font-size: 14px;
     color: rgb(26, 115, 232);
@@ -162,6 +172,10 @@ body {
 
 .date-select .click-button:hover {
     background-color: rgb(228, 242, 247);
+}
+
+.date-select .click-button:active {
+    background-color: rgb(200, 233, 245);
 }
 
 #month-container {

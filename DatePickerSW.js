@@ -5,8 +5,29 @@ export default class DatePickerSW
 
     firstClick = true;
 
-    constructor ()
+    constructor (applyEvent)
     {
+        this.applyEvent = applyEvent;
+        this.modal = document.querySelector('.date-select');
+        this.cancelButton = document.querySelector('#cancel-button');
+        this.applyButton = document.querySelector('#apply-button');
+        this.selectedRange = 'Custom';
+
+        this.applyButton.addEventListener('click', () => { 
+            if (this.applyEvent)
+                this.applyEvent({startDate: this.startDate, endDate: this.endDate});
+
+            this.setPreviewField();
+            this.hide(); 
+        });
+
+        this.cancelButton.addEventListener('click', () => { this.hide(); });
+
+        this.showButton = document.querySelector('#open-date-select-button');
+        this.showButton.addEventListener('click', () => {
+            this.show();
+        });
+
         this.startDateField = document.querySelector('#start-date-input-field');
         this.endDateField = document.querySelector('#end-date-input-field');
         this.templateMonth = document.querySelector('#template-month');
@@ -20,6 +41,7 @@ export default class DatePickerSW
         this.startDate = {year: currentYear, month: currentMonth, day: currentDay};
         this.endDate = {year: currentYear, month: currentMonth, day: currentDay};
 
+        this.setPreviewField();
         this.setInputFields();
 
         for (let year = 2022; year <= currentYear; year++)
@@ -34,7 +56,7 @@ export default class DatePickerSW
         this.monthContainer.scrollTop = this.monthContainer.scrollHeight;
 
         this.monthContainer.addEventListener('click', (event) => {
-            if (event.target && event.target.classList.contains('day-item-inner')) 
+            if (event.target && event.target.classLists('day-item-inner')) 
             {
                 const date = event.target.date;
                 if (this.firstClick)
@@ -44,6 +66,7 @@ export default class DatePickerSW
                     this.clearRange();
                     this.endDate = this.startDate;
                     this.setRange(this.startDate, null);
+                    this.selectedRange = 'Custom';
                 }
                 else
                 {
@@ -56,7 +79,7 @@ export default class DatePickerSW
                         this.startDate = this.endDate;
                         this.endDate = temp;
                     }
-            
+                    this.selectedRange = 'Custom';
                     this.setRange(this.startDate, this.endDate);
                 }
 
@@ -96,6 +119,23 @@ export default class DatePickerSW
         }
 
         this.setRange(this.startDate, this.endDate)
+    }
+
+    setPreviewField()
+    {
+        document.querySelector('#preview-selected-range').textContent = this.selectedRange;
+        document.querySelector('#preview-start-date').textContent = this.MONTHS_STRINGS_NICE[this.startDate.month] + ' ' + (this.startDate.day + 1) + ', ' + this.startDate.year;;
+        document.querySelector('#preview-end-date').textContent = this.MONTHS_STRINGS_NICE[this.endDate.month] + ' ' + (this.endDate.day + 1) + ', ' + this.endDate.year;;
+    }
+
+    hide()
+    {
+        this.modal.parentElement.classList.add('date-select-modal-hidden');
+    }
+
+    show()
+    {
+        this.modal.parentElement.classList.remove('date-select-modal-hidden');
     }
 
     createMonth(year, month)
@@ -257,6 +297,7 @@ export default class DatePickerSW
         switch (value)
         {
             case 'today':
+                this.selectedRange = 'Idag';
                 const currentYear = new Date().getFullYear();
                 const currentMonth = new Date().getMonth();
                 const currentDay = new Date().getDate() - 1;
@@ -264,6 +305,7 @@ export default class DatePickerSW
                 this.endDate = {year: currentYear, month: currentMonth, day: currentDay};
                 break;
             case 'yesterday':
+                this.selectedRange = 'Igår';
                 const today = new Date();
                 const yesterday = new Date(today);
                 yesterday.setDate(today.getDate() - 1);
@@ -274,56 +316,67 @@ export default class DatePickerSW
                 this.endDate = {year: year, month: month, day: day};
                 break;
             case 'this_week':
+                this.selectedRange = 'Denna vecka';
                 const thisWeek = this.getThisWeek();
                 this.startDate = thisWeek.start;
                 this.endDate = thisWeek.end;
                 break;
             case 'last_week':
+                this.selectedRange = 'Föregående vecka';
                 const lastWeek = this.getLastWeek();
                 this.startDate = lastWeek.start;
                 this.endDate = lastWeek.end;
                 break;
             case 'this_month':
+                this.selectedRange = 'Denna månad';
                 const thisMonth = this.getThisMonth();
                 this.startDate = thisMonth.start;
                 this.endDate = thisMonth.end;
                 break;
             case 'last_month':
+                this.selectedRange = 'Föregående månad';
                 const lastMonth = this.getLastMonth();
                 this.startDate = lastMonth.start;
                 this.endDate = lastMonth.end;
                 break;
             case 'last_7':
+                this.selectedRange = 'Senaste 7 dagar';
                 const last7 = this.getLast7Days();
                 this.startDate = last7.start;
                 this.endDate = last7.end;
                 break;
             case 'last_30':
+                this.selectedRange = 'Senaste 30 dagar';
                 const last30 = this.getLast30Days();
                 this.startDate = last30.start;
                 this.endDate = last30.end;
                 break;
             case 'last_90':
+                this.selectedRange = 'Senaste 90 dagar';
                 const last90 = this.getLast90Days();
                 this.startDate = last90.start;
                 this.endDate = last90.end;
                 break;
             case 'last_12':
+                this.selectedRange = 'Senaste 12 månader';
                 const last12 = this.getLast12Months();
                 this.startDate = last12.start;
                 this.endDate = last12.end;
                 break;
             case 'last_year':
+                this.selectedRange = 'Föregående år';
                 const lastYear = this.getLastYear();
                 this.startDate = lastYear.start;
                 this.endDate = lastYear.end;
                 break;
             case 'this_year':
+                this.selectedRange = 'Detta år';
                 const thisYear = this.getThisYear();
                 this.startDate = thisYear.start;
                 this.endDate = thisYear.end;
                 break;
             case 'from_start':
+                this.selectedRange = 'Från start';
                 const fromStart = this.getFromStart();
                 this.startDate = fromStart.start;
                 this.endDate = fromStart.end;
