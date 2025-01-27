@@ -43,7 +43,7 @@ body {
 
 .date-select #body-container {
     display: flex;
-    overflow: auto;
+    height: 375px;
 }
 
 .date-select *::-webkit-scrollbar {
@@ -155,9 +155,12 @@ body {
     background-color: rgb(228, 242, 247);
 }
 
-.month-container {
+#month-container {
     display: flex;
     flex-direction: column;
+    max-height: 290px;
+    overflow: hidden;
+    overflow-y: auto;
 }
 
 .month-header {
