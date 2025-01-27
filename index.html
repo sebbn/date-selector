@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Project</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to CSS -->
+</head>
+<body>
+    <div class="date-select-button">
+        <span id="selected-range">Last 7 days</span>
+        <span>Jan 19, 2024</span><span>-</span><span>Jan 26, 2024</span>
+        <span class="caret-holder">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+            </svg>
+        </span>
+    </div>
+
+
+    <br/>
+    <hr>
+    <br/>
+
+    <div class="date-select">
+        <div id="preset-container"></div>
+        <div id="calender-container">
+            <div><span>Start date</span><span>Input</span></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <span class="full-width-span">Jan 19, 2024</span>
+        <span class="top-span">Start date</span>
+    </div>
+
+    <script src="script.js"></script> <!-- Link to JS -->
+</body>
+</html>

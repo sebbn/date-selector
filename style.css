@@ -1,0 +1,68 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.date-select-button {
+    cursor: pointer;
+    display: inline-flex;
+    padding: 4px 12px;
+    border-radius: 2px;
+    gap: 4px;
+    align-items: center;
+    font-family: monospace;
+}
+
+.date-select-button:hover {
+    background-color: #e3e3e3;
+}
+
+.caret-holder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.date-select-button #selected-range {
+    font-size: smaller;
+}
+
+.date-select {
+    margin: 48px;
+    width: 512px;
+    height: 430px;
+    background-color: white;
+    display: flex;
+}
+
+.date-select #preset-container {
+    width: 240px;
+}
+
+.container {
+    position: relative; /* Required for positioning the top span */
+    width: 300px; /* Set a fixed width for the container */
+    border: 2px solid #333; /* Border for the div */
+    padding: 20px;
+    margin: 50px; /* For spacing around the div */
+}
+
+/* Full-width span that takes the full width of the container */
+.full-width-span {
+    display: block; /* Makes it a block element so it takes up full width */
+    width: 100%;
+    text-align: center;
+}
+
+/* Smaller span positioned above the top border */
+.top-span {
+    position: absolute;
+    top: -10px; /* Position the span above the top border */
+    left: 50%;
+    transform: translateX(-50%); /* Center the span horizontally */
+    font-size: 12px;
+    background-color: #fff; /* To avoid overlap with border */
+    padding: 0 5px;
+}
