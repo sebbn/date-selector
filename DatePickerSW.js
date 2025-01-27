@@ -24,9 +24,11 @@ export default class DatePickerSW
         this.monthContainer.addEventListener('click', function(event) {
             if (event.target && event.target.classList.contains('day-item-inner')) 
             {
-                console.log(event.target.year, event.target.month, event.target.day);
+                console.log(event.target.date);
             }
         });
+
+        this.setRange({year: 2024, month: 11, day: 2}, {year: 2025, month: 0, day: 9})
     }
 
     createMonth(year, month)
@@ -51,9 +53,7 @@ export default class DatePickerSW
             const dayItem = this.templateDay.content.cloneNode(true).firstElementChild;
             const inner = dayItem.querySelector('.day-item-inner');
             inner.textContent = (i + 1);
-            inner.year = year;
-            inner.month = month;
-            inner.day = i;
+            inner.date = {year: year, month: month, day: i};
             dayContainer.appendChild(dayItem);
         }
 
@@ -70,5 +70,33 @@ export default class DatePickerSW
         const dayNames = [6, 0, 1, 2, 3, 4, 5];
         const firstDay = new Date(year, month, 1).getDay();
         return dayNames[firstDay];
-      }
+    }
+
+    setRange(startDate, endDate)
+    {
+        const items = document.querySelectorAll('.day-item-inner');
+
+        items.forEach(item => {
+            if (this.isDateEqual(startDate, item.date))
+                item.closest('.day-item').classList.add('selected-left');
+            else if (this.isDateEqual(endDate, item.date))
+                item.closest('.day-item').classList.add('selected-right');
+            else if (this.isDateBetween(item.date, startDate, endDate))
+                item.closest('.day-item').classList.add('selected');
+        });
+    }
+
+    isDateEqual(a, b)
+    {
+        return a.year == b.year && a.month == b.month && a.day == b.day;
+    }
+    
+    isDateBetween(date, start, end)
+    {
+        const dateValue = date.year * 10000 + date.month * 100 + date.day;
+        const startValue = start.year * 10000 + start.month * 100 + start.day;
+        const endValue = end.year * 10000 + end.month * 100 + end.day;
+
+        return dateValue >= startValue && dateValue <= endValue;
+    }
 }
