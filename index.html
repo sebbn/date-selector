@@ -23,17 +23,69 @@
     <br/>
 
     <div class="date-select">
-        <div id="preset-container"></div>
-        <div id="calender-container">
-            <div><span>Start date</span><span>Input</span></div>
+        <div id="body-container">
+            <div id="preset-container">
+                <div id="item-container">
+                    <span class="preset-item">Today</span>
+                    <span class="preset-item">Yesterday</span>
+                    <span class="preset-item">Today</span>
+                    <span class="preset-item">Yesterday</span>
+                    <span class="preset-item">Today</span>
+                    <span class="preset-item">Yesterday</span>
+                    <span class="preset-item">Today</span>
+                    <span class="preset-item">Yesterday</span>
+                    <span class="preset-item">Today</span>
+                    <span class="preset-item">Yesterday</span>
+                    <span class="preset-item">Today</span>
+                    <span class="preset-item">Yesterday</span>
+                    <span class="preset-item">Today</span>
+                    <span class="preset-item">Yesterday</span>
+                </div>
+            </div>
+            <div id="calender-container">
+                <div id="date-range-select-container">
+                    <div class="container">
+                        <span class="full-width-span">Jan 19, 2024</span>
+                        <span class="top-span">Start date</span>
+                    </div>
+                    <span style="font-size: x-large; color: #cfcfcf;">-</span>
+                    <div class="container">
+                        <span class="full-width-span">Jan 19, 2024</span>
+                        <span class="top-span">End date</span>
+                    </div>
+                </div>
+                <div id="day-container">
+                    <span>M</span>
+                    <span>T</span>
+                    <span>O</span>
+                    <span>T</span>
+                    <span>F</span>
+                    <span>L</span>
+                    <span>S</span>
+                </div>
+                <div style="border-bottom: 1px #cfcfcf solid;"></div>
+                <div id="month-container">
+                </div>
+                <template id="template-month">
+                    <div class="month-item">
+                        <span class="month-header">month name</span>
+                        <div class="month-content">
+                        </div>
+                    </div>
+                </template>
+                <template id="template-day">
+                    <div class="day-item">
+                        <span class="day-item-inner">day number</span>
+                    </div>
+                </template>
+            </div>
+        </div>
+        <div id="footer">
+            <span class="click-button" id="cancel-button">Cancel</span>
+            <span class="click-button" id="apply-button">Apply</span>
         </div>
     </div>
 
-    <div class="container">
-        <span class="full-width-span">Jan 19, 2024</span>
-        <span class="top-span">Start date</span>
-    </div>
-
-    <script src="script.js"></script> <!-- Link to JS -->
+    <script src="script.js" type="module"></script>
 </body>
 </html>
