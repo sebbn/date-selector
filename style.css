@@ -86,6 +86,7 @@ body {
 }
 
 .preset-item {
+    font-size: smaller;
     color: #4b4b4b;
     padding: 8px;
     cursor: pointer;
@@ -111,6 +112,14 @@ body {
     display: block;
     width: 100%;
     text-align: center;
+}
+
+.container:focus-within {
+    border: 1px solid #838383;
+}
+
+.full-width-span:focus-visible {
+    outline: none;
 }
 
 .top-span {
@@ -203,6 +212,11 @@ body {
 
 .day-item-inner:hover {
     background-color: #e9e9e9;
+}
+
+.day-item.pre-selected .day-item-inner {
+    background-color: rgb(26, 115, 232);
+    color: white;
 }
 
 .day-item.selected-left .day-item-inner {

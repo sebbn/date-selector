@@ -26,31 +26,30 @@
         <div id="body-container">
             <div id="preset-container">
                 <div id="item-container">
-                    <span class="preset-item">Today</span>
-                    <span class="preset-item">Yesterday</span>
-                    <span class="preset-item">Today</span>
-                    <span class="preset-item">Yesterday</span>
-                    <span class="preset-item">Today</span>
-                    <span class="preset-item">Yesterday</span>
-                    <span class="preset-item">Today</span>
-                    <span class="preset-item">Yesterday</span>
-                    <span class="preset-item">Today</span>
-                    <span class="preset-item">Yesterday</span>
-                    <span class="preset-item">Today</span>
-                    <span class="preset-item">Yesterday</span>
-                    <span class="preset-item">Today</span>
-                    <span class="preset-item">Yesterday</span>
+                    <span class="preset-item" id="today">Idag</span>
+                    <span class="preset-item" id="yesterday">Igår</span>
+                    <span class="preset-item" id="this_week">Denna vecka (Mån - Idag)</span>
+                    <span class="preset-item" id="last_week">Föregående vecka (Mån - Sön)</span>
+                    <span class="preset-item" id="this_month">Denna månad</span>
+                    <span class="preset-item" id="last_month">Föregående månad</span>
+                    <span class="preset-item" id="last_7">Senaste 7 dagarna</span>
+                    <span class="preset-item" id="last_30">Senaste 30 dagarna</span>
+                    <span class="preset-item" id="last_90">Senaste 90 dagarna</span>
+                    <span class="preset-item" id="last_12">Senaste 12 Månader</span>
+                    <span class="preset-item" id="last_year">Föregående år</span>
+                    <span class="preset-item" id="this_year">Detta år (Jan - Idag)</span>
+                    <span class="preset-item" id="from_start">Från start</span>
                 </div>
             </div>
             <div id="calender-container">
                 <div id="date-range-select-container">
                     <div class="container">
-                        <span class="full-width-span">Jan 19, 2024</span>
+                        <span class="full-width-span" id="start-date-input-field" contenteditable="true">Jan 19, 2024</span>
                         <span class="top-span">Start date</span>
                     </div>
                     <span style="font-size: x-large; color: #cfcfcf;">-</span>
                     <div class="container">
-                        <span class="full-width-span">Jan 19, 2024</span>
+                        <span class="full-width-span" id="end-date-input-field" contenteditable="true">Jan 19, 2024</span>
                         <span class="top-span">End date</span>
                     </div>
                 </div>
